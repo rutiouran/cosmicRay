@@ -9,7 +9,6 @@
 
 #include "G4UImanager.hh"
 #include "G4UIcommand.hh"
-//#include "StackingAction.hh"
 
 #include "FTFP_BERT.hh"
 
@@ -47,7 +46,6 @@ int main(int argc,char **argv)		//Detect interactive mode (if no arguments ) and
 
   //User action initialization
   runManager->SetUserInitialization(new ActionInitialization());
-  //runManager->SetUserAction( StackingAction::Instance() );
 
   //Initialization visualization
   //

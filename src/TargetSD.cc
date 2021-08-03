@@ -31,10 +31,10 @@ void TargetSD::Initialize(G4HCofThisEvent* hce)
     = G4SDManager::GetSDMpointer()->GetCollectionID(collectionName[0]);
   hce->AddHitsCollection( hcID, fHitsCollection );
 
-  for (G4int i=0; i<CopyNb+1; i++)
-  {
-    fHitsCollection->insert(new TargetHit());
-  }
+  //for (G4int i=0; i<CopyNb+1; i++)
+  //{
+  //  fHitsCollection->insert(new TargetHit());
+  //}
 }
 
 G4bool TargetSD::ProcessHits(G4Step* step, G4TouchableHistory*)
@@ -50,10 +50,10 @@ G4bool TargetSD::ProcessHits(G4Step* step, G4TouchableHistory*)
 
   G4String processName = process->GetProcessName();
 
-  if(processName == "Decay")
-  {
-    G4cout << "1" << G4endl;
-  }
+  //if(processName == "Decay")
+  //{
+  //  G4cout << "1" << G4endl;
+  //}
 
   TargetHit* newHit = new TargetHit();
 

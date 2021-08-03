@@ -14,13 +14,14 @@ class EventAction : public G4UserEventAction
 
     virtual void BeginOfEventAction(const G4Event* event);
     virtual void EndOfEventAction(const G4Event* event);
+    void AddPhi(G4double phi);
 
   private:
   TargetHitsCollection* GetTargetHitsCollection(G4int hcID, const G4Event* event) const;
 
   G4int fTargetHCID;
 
-  G4int copyNb; // The Target`s number
+  G4int copyNb = DetectorConstruction::GetCopyNb(); // The Target`s number
 };
 
 #endif

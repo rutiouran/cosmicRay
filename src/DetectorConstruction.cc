@@ -89,7 +89,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
                  worldMaterial,    // its material
                  "World");         // its name
                                    
-  auto worldPV
+  worldPV
     = new G4PVPlacement(
                  0,                // no rotation
                  G4ThreeVector(),  // at (0,0,0)
@@ -115,7 +115,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 
   envLV->SetVisAttributes(envelopeVisAtt);
 
-  new G4PVPlacement(
+  envPV = new G4PVPlacement(
 		0,		   // no rotation
 		G4ThreeVector(),   // at(0, 0, 0)
 		envLV,		   // its logical volume
@@ -156,8 +156,8 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 		       fCheckOverlaps);			// checking overlaps
 
   // register logical Volume in PolarizationManager with zero polarization
-  G4PolarizationManager * polMgr = G4PolarizationManager::GetInstance();
-  polMgr->SetVolumePolarization(fLogicalTarget[copyNb], G4ThreeVector(0.,0.,0.));
+  //G4PolarizationManager * polMgr = G4PolarizationManager::GetInstance();
+  //polMgr->SetVolumePolarization(fLogicalTarget[copyNb], G4ThreeVector(0.,0.,0.));
   }
 
   //std::cout << *(G4Material::GetMaterialTable()) << std::endl; // Get material table

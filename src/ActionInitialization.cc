@@ -1,7 +1,9 @@
 #include "ActionInitialization.hh"
 #include "PrimaryGeneratorAction.hh"
+#include "DetectorConstruction.hh"
 #include "RunAction.hh"
 #include "EventAction.hh"
+#include "SteppingAction.hh"
 
 ActionInitialization::ActionInitialization()
  : G4VUserActionInitialization()
@@ -17,11 +19,18 @@ void ActionInitialization::BuildForMaster() const
 
 void ActionInitialization::Build() const
 {
+  DetectorConstruction* det = new DetectorConstruction;
+  PrimaryGeneratorAction* prim = new PrimaryGeneratorAction;
+  RunAction* runAction = new RunAction;
+  
+
   SetUserAction(new PrimaryGeneratorAction);
 
-  RunAction* runAction = new RunAction;
+  //RunAction* runAction = new RunAction;
   SetUserAction(runAction);
 
   EventAction* eventAction = new EventAction();
   SetUserAction(eventAction);
+
+  SetUserAction(new SteppingAction(det,prim,eventAction));
 }  

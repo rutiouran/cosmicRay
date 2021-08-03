@@ -5,6 +5,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/example.dir/src/EventAction.cc.o"
   "CMakeFiles/example.dir/src/PrimaryGeneratorAction.cc.o"
   "CMakeFiles/example.dir/src/RunAction.cc.o"
+  "CMakeFiles/example.dir/src/SteppingAction.cc.o"
   "CMakeFiles/example.dir/src/TargetHit.cc.o"
   "CMakeFiles/example.dir/src/TargetSD.cc.o"
   "example"

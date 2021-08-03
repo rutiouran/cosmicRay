@@ -18,10 +18,15 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 
     void SetCopyNb(G4int copyNb) {fNofTargets = copyNb;};
     static G4int GetCopyNb() {return fNofTargets;};
+
+    const G4VPhysicalVolume* GetEnvelope()      {return envPV;};
+    const G4VPhysicalVolume* GetWorld()      {return worldPV;};
      
   private:
     // data members
     //
+    G4VPhysicalVolume* envPV;
+    G4VPhysicalVolume* worldPV;
 
     G4bool  fCheckOverlaps; // option to activate checking of volumes overlaps
     static  G4int   fNofTargets;     // number of layers
