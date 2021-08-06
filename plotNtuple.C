@@ -13,26 +13,26 @@
   TCanvas* c1 = new TCanvas("c1", "Lifetime of cosmic ray {#mu}", 20, 20, 1000, 1000);
   c1->SetTitle("Lifetime of cosmic ray {#mu}");
 
-  TNtuple* ntuple = (TNtuple*)f.Get("cosmicRay");
+  TNtuple* ntuple = (TNtuple*)f.Get("DecayTime");
   c1->Divide(2, 3);
 
   c1->cd(1);
-  ntuple->Draw("Time1neutrino-Time1muon", "Time1neutrino>0&&Time1muon>0");
+  ntuple->Draw("Time1electron-Time1muon", "Time1electron>0&&Time1muon>0");
 
   c1->cd(2);
-  ntuple->Draw("Time2neutrino-Time2muon", "Time2neutrino>0&&Time2muon>0");
+  ntuple->Draw("Time2electron-Time2muon", "Time2electron>0&&Time2muon>0");
 
   c1->cd(3);
-  ntuple->Draw("Time3neutrino-Time3muon", "Time3neutrino>0&&Time3muon>0");
+  ntuple->Draw("Time3electron-Time3muon", "Time3electron>0&&Time3muon>0");
 
   c1->cd(4);
-  ntuple->Draw("Time4neutrino-Time4muon", "Time4neutrino>0&&Time4muon>0");
+  ntuple->Draw("Time4electron-Time4muon", "Time4electron>0&&Time4muon>0");
 
   c1->cd(5);
-  ntuple->Draw("Time5neutrino-Time5muon", "Time5neutrino>0&&Time5muon>0");
+  ntuple->Draw("Time5electron-Time5muon", "Time5electron>0&&Time5muon>0");
 
   c1->cd(6);
-  ntuple->Draw("Time6neutrino-Time6muon", "Time6neutrino>0&&Time6muon>0");
+  ntuple->Draw("Time6electron-Time6muon", "Time6electron>0&&Time6muon>0");
 
   c1->Print("Time.jpg");
 /*

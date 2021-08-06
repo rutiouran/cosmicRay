@@ -8,13 +8,9 @@ G4ThreadLocal G4Allocator<TargetHit>* TargetHitAllocator=0;
 
 TargetHit::TargetHit()
  : G4VHit(),
-   fTrackID(-1),
-   fTargetNb(-1),
    fEdep(0.),
-   fTime(0.),
-   fPid(0),
-   fPolar(G4ThreeVector()),
-   fProcess("NULL")
+   fmutime(0.),
+   felectiontime(0.)
 {}
 
 TargetHit::~TargetHit() 
@@ -23,24 +19,16 @@ TargetHit::~TargetHit()
 TargetHit::TargetHit(const TargetHit& right)
   : G4VHit()
 {
-  fTrackID   = right.fTrackID;
-  fTargetNb  = right.fTargetNb;
-  fEdep      = right.fEdep;
-  fTime      = right.fTime;
-  fPid       = right.fPid;
-  fPolar     = right.fPolar;
-  fProcess   = right.fProcess;
+  fEdep         = right.fEdep;
+  fmutime       = right.fmutime;
+  felectiontime = right.felectiontime;
 }
 
 const TargetHit& TargetHit::operator=(const TargetHit& right)
 {
-  fTrackID   = right.fTrackID;
-  fTargetNb  = right.fTargetNb;
-  fEdep      = right.fEdep;
-  fTime      = right.fTime;
-  fPid       = right.fPid;
-  fPolar     = right.fPolar;
-  fProcess   = right.fProcess;
+  fEdep         = right.fEdep;
+  fmutime       = right.fmutime;
+  felectiontime = right.felectiontime;
 
   return *this;
 }
@@ -48,4 +36,19 @@ const TargetHit& TargetHit::operator=(const TargetHit& right)
 G4bool TargetHit::operator==(const TargetHit& right) const
 {
   return ( this == &right ) ? true : false;
+}
+
+void TargetHit::AddEdep(G4double de)
+{
+  fEdep+=de;
+}
+
+void TargetHit::AddMuTime(G4double mutime)
+{
+  fmutime = mutime;
+}
+
+void TargetHit::AddElectronTime(G4double electrontime)
+{
+  felectiontime = electrontime;
 }

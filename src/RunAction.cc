@@ -30,21 +30,25 @@ RunAction::RunAction()
   analysisManager->SetNtupleMerging(true);
 
   // Book histograms, ntuple
+  // Note: merging ntuples is available only with ROOT output
   //
   G4String title1 = "edep";
   G4String title2 = "Time";
 
   //ntuple
-  analysisManager->CreateNtuple("cosmicRay", "cosmicRay");
-  analysisManager->CreateNtupleDColumn("TotalEdep");
+  analysisManager->CreateNtuple("Edep", "Edep");
   for(G4int i=1; i<=copyNb; i++)
   {
      analysisManager->CreateNtupleDColumn(title1+std::to_string(i));
   }
+  analysisManager->CreateNtupleDColumn("TotalEdep");
+  analysisManager->FinishNtuple();
+
+  analysisManager->CreateNtuple("DecayTime", "DecayTime");
   for(G4int i=1; i<=copyNb; i++)
   {
   analysisManager->CreateNtupleDColumn(title2+std::to_string(i)+"muon");
-  analysisManager->CreateNtupleDColumn(title2+std::to_string(i)+"neutrino");
+  analysisManager->CreateNtupleDColumn(title2+std::to_string(i)+"electron");
   }
   analysisManager->FinishNtuple();
 }

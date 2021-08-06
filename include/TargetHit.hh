@@ -22,32 +22,20 @@ class TargetHit : public G4VHit
     inline void* operator new(size_t);
     inline void  operator delete(void*);
 
-    // Set methods
-    void SetTrackID(G4int track) {fTrackID = track;};
-    void SetTargetNb(G4int target) {fTargetNb = target;};
-    void SetEdep(G4double de) {fEdep = de;};
-    void SetGlobalTime(G4double time) {fTime = time;};
-    void SetPid(G4int pid) {fPid = pid;};
-    void SetPolarization(G4ThreeVector dpo) {fPolar = dpo;};
-    void SetProcessName(G4String pro) {fProcess = pro;};
+    // Add values
+    void AddEdep(G4double de);
+    void AddMuTime(G4double mutime);
+    void AddElectronTime(G4double electrontime);
 
     // Get methods
-    G4int GetTrackID() const {return fTrackID;};
-    G4int GetTargetNb() const {return fTargetNb;};
     G4double GetEdep() const {return fEdep;};
-    G4double GetGlobalTime() const {return fTime;};
-    G4double GetPid() const {return fPid;};
-    G4ThreeVector GetPolarization() const {return fPolar;};
-    G4String GetProcessName() const {return fProcess;};
+    G4double GetMuTime() const {return fmutime;};
+    G4double GetElectronTime() const {return felectiontime;};
 
   private:
-    G4int fTrackID;
-    G4int fTargetNb;
     G4double fEdep;
-    G4double fTime;
-    G4double fPid;
-    G4ThreeVector fPolar;
-    G4String fProcess;
+    G4double fmutime;
+    G4double felectiontime;
 };
 
 typedef G4THitsCollection<TargetHit> TargetHitsCollection;

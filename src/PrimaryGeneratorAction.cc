@@ -9,6 +9,7 @@
 #include "G4ParticleDefinition.hh"
 #include "G4SystemOfUnits.hh"
 #include "Randomize.hh"
+
 /*
 double funFlux(double *x, double *par)
 {
@@ -73,7 +74,8 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   // on DetectorConstruction class we get Envelope volume
   // from G4LogicalVolumeStore.
   
-  G4double envSizeZ = 0;
+  G4double envSizeZ = 0.;
+  G4double envSizeXY = 0.;
 
   if (!fEnvelopeBox)
   {
@@ -88,18 +90,22 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   if(fEnvelopeBox) 
   {
     envSizeZ = fEnvelopeBox->GetZHalfLength()*2.;
+    envSizeXY = fEnvelopeBox->GetXHalfLength()-10*cm;
   }
 
   G4double z0 = -0.5 * envSizeZ;
+  G4double x0 = envSizeXY*(G4UniformRand()-0.5);
+  G4double y0 = envSizeXY*(G4UniformRand()-0.5);
+
   
-  fParticleGun->SetParticlePosition(G4ThreeVector(0, 0, z0));
+  fParticleGun->SetParticlePosition(G4ThreeVector(x0, y0, z0));
 
   //double muonEn = fMuonGen->GetRandom();
   //fParticleGun->SetParticleEnergy(muonEn * GeV);
   //fParticleGun->SetParticleEnergy(G4Random->Uniform(0, 100) * MeV);
 
-  G4double Energy = G4UniformRand() * 100.;
-  fParticleGun->SetParticleEnergy(Energy * MeV);
+  G4double fEnergy = G4UniformRand() * 100.;
+  fParticleGun->SetParticleEnergy(fEnergy * MeV);
 
   fParticleGun->GeneratePrimaryVertex(anEvent);//significant
 }

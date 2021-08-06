@@ -21,6 +21,7 @@ class TargetSD : public G4VSensitiveDetector
     virtual void   EndOfEvent(G4HCofThisEvent* hitCollection);
 
   private:
+
     TargetHitsCollection* fHitsCollection;
     G4int CopyNb;
 };
