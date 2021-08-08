@@ -54,7 +54,9 @@ G4bool TargetSD::ProcessHits(G4Step* step, G4TouchableHistory*)
     steplength = step->GetStepLength();
   } 
 
-  if(edep == 0. && steplength == 0.)  return false;
+  auto charge = step->GetTrack()->GetDefinition()->GetPDGCharge();
+  if (charge==0.) return true;
+  //if(edep == 0. && steplength == 0.)  return false;
 
   G4int pid = step->GetTrack()->GetParticleDefinition()->GetPDGEncoding();
   G4String particleName = step->GetTrack()->GetParticleDefinition()->GetParticleName();
@@ -97,7 +99,15 @@ G4bool TargetSD::ProcessHits(G4Step* step, G4TouchableHistory*)
 
   hit->AddEdep(edep);
 
-//  hit->AddEdep(edep);
+  // Get the decay position
+  if(step->GetTrack()->GetTrackID()==1 && step->GetPreStepPoint()->GetProcessDefinedStep()->GetProcessName()=="Decay")
+  {
+    //G4cout << "Process = " << step->GetPostStepPoint()->GetProcessDefinedStep()->GetProcessName() << G4endl;
+    G4cout << "Position = " << step->GetTrack()->GetPosition().z() << G4endl;
+    hit->AddDecayPosition(step->GetTrack()->GetPosition().z());
+  }
+
+  return true;
   
 
 //  G4String processName = process->GetProcessName();
@@ -135,8 +145,6 @@ G4bool TargetSD::ProcessHits(G4Step* step, G4TouchableHistory*)
 //  {
 //  GetDecayOfElectronic(step, muEnergy);
 //  }
-
-  return true;
 }
 
 void TargetSD::EndOfEvent(G4HCofThisEvent*)

@@ -73,17 +73,17 @@ void EventAction::EndOfEventAction(const G4Event* event)
   for(long unsigned int i=0; i<targetHC->entries(); i++)
   {
     TotalEdep+=(*targetHC)[i]->GetEdep();
-    analysisManager->FillNtupleDColumn(0, i, (*targetHC)[i]->GetEdep());
   }
-  analysisManager->FillNtupleDColumn(0, 6, TotalEdep);
-  analysisManager->AddNtupleRow(0);
 
+  analysisManager->FillNtupleDColumn(0, TotalEdep);
   for(long unsigned int i=0; i<targetHC->entries(); i++)
   {
-    analysisManager->FillNtupleDColumn(1, 2*i, (*targetHC)[i]->GetMuTime());
-    analysisManager->FillNtupleDColumn(1, 2*i+1, (*targetHC)[i]->GetElectronTime());
+    analysisManager->FillNtupleDColumn(i+1, (*targetHC)[i]->GetEdep());
+    analysisManager->FillNtupleDColumn(2*i+7, (*targetHC)[i]->GetMuTime());
+    analysisManager->FillNtupleDColumn(2*i+1+7, (*targetHC)[i]->GetElectronTime());
+    analysisManager->FillNtupleDColumn(19, (*targetHC)[i]->GetDecayPosition());
   }
-  analysisManager->AddNtupleRow(1);
+  analysisManager->AddNtupleRow();
 
 
 //

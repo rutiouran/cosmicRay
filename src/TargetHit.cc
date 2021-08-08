@@ -10,7 +10,8 @@ TargetHit::TargetHit()
  : G4VHit(),
    fEdep(0.),
    fmutime(0.),
-   felectiontime(0.)
+   felectiontime(0.),
+   fDecayPosition(-1.)
 {}
 
 TargetHit::~TargetHit() 
@@ -19,16 +20,18 @@ TargetHit::~TargetHit()
 TargetHit::TargetHit(const TargetHit& right)
   : G4VHit()
 {
-  fEdep         = right.fEdep;
-  fmutime       = right.fmutime;
-  felectiontime = right.felectiontime;
+  fEdep          = right.fEdep;
+  fmutime        = right.fmutime;
+  felectiontime  = right.felectiontime;
+  fDecayPosition = right.fDecayPosition;
 }
 
 const TargetHit& TargetHit::operator=(const TargetHit& right)
 {
-  fEdep         = right.fEdep;
-  fmutime       = right.fmutime;
-  felectiontime = right.felectiontime;
+  fEdep          = right.fEdep;
+  fmutime        = right.fmutime;
+  felectiontime  = right.felectiontime;
+  fDecayPosition = right.fDecayPosition;
 
   return *this;
 }
@@ -51,4 +54,9 @@ void TargetHit::AddMuTime(G4double mutime)
 void TargetHit::AddElectronTime(G4double electrontime)
 {
   felectiontime = electrontime;
+}
+
+void TargetHit::AddDecayPosition(G4double decayPosition)
+{
+  fDecayPosition = decayPosition;
 }

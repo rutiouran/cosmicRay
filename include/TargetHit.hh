@@ -26,16 +26,19 @@ class TargetHit : public G4VHit
     void AddEdep(G4double de);
     void AddMuTime(G4double mutime);
     void AddElectronTime(G4double electrontime);
+    void AddDecayPosition(G4double decayPosition);
 
     // Get methods
     G4double GetEdep() const {return fEdep;};
     G4double GetMuTime() const {return fmutime;};
     G4double GetElectronTime() const {return felectiontime;};
+    G4double GetDecayPosition() const {return fDecayPosition;};
 
   private:
     G4double fEdep;
     G4double fmutime;
     G4double felectiontime;
+    G4double fDecayPosition;
 };
 
 typedef G4THitsCollection<TargetHit> TargetHitsCollection;

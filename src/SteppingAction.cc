@@ -17,6 +17,13 @@ SteppingAction::~SteppingAction()
 
 void SteppingAction::UserSteppingAction(const G4Step* step)
 {
+//  if(step->GetTrack()->GetTrackID()==1 && step->GetPreStepPoint()->GetProcessDefinedStep()->GetProcessName()=="Decay")
+//  {
+//    //G4cout << "Process = " << step->GetPostStepPoint()->GetProcessDefinedStep()->GetProcessName() << G4endl;
+//    G4cout << "Position = " << step->GetTrack()->GetPosition().z() << G4endl;
+//  }
+
+
 //  G4StepPoint* prePoint = step->GetPreStepPoint();
 //  G4StepPoint* endPoint = step->GetPostStepPoint();
 //
@@ -51,6 +58,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
 //      direction*G4PolarizationHelper::GetParticleFrameY(beamDirection);
 //
 //    G4double phi=std::atan2(ydir,xdir);
+//  }
 
 //    auto analysisManager  = G4AnalysisManager::Instance();
 //    analysisManager->FillNtupleDColumn(1, 0, phi);

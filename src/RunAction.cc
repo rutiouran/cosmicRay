@@ -36,20 +36,20 @@ RunAction::RunAction()
   G4String title2 = "Time";
 
   //ntuple
-  analysisManager->CreateNtuple("Edep", "Edep");
+  analysisManager->CreateNtuple("CosmicRay", "CosmicRay");
+  analysisManager->CreateNtupleDColumn("TotalEdep");
   for(G4int i=1; i<=copyNb; i++)
   {
      analysisManager->CreateNtupleDColumn(title1+std::to_string(i));
   }
-  analysisManager->CreateNtupleDColumn("TotalEdep");
-  analysisManager->FinishNtuple();
 
-  analysisManager->CreateNtuple("DecayTime", "DecayTime");
   for(G4int i=1; i<=copyNb; i++)
   {
   analysisManager->CreateNtupleDColumn(title2+std::to_string(i)+"muon");
   analysisManager->CreateNtupleDColumn(title2+std::to_string(i)+"electron");
   }
+
+  analysisManager->CreateNtupleDColumn("DecayPositionZ"); // The decay position of muon in Z axis
   analysisManager->FinishNtuple();
 }
 
